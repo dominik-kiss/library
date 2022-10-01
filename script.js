@@ -30,22 +30,20 @@ myLibrary.forEach((book, index) => {
     card.className = "card";
     card.id = `card${index+1}`;
 
-    let table = document.createElement("table");
-
     for (const [key, value] of Object.entries(book)) {
-        if (key == "info") {
+        if (key == "read") {
+            let readButton = document.createElement("button");
+            readButton.innerHTML = value ? "Read" : "Not read";
+            card.appendChild(readButton);
             break;
         }
-        let tr = table.insertRow();
-
-        let td1 = tr.insertCell();
-        let text1 = document.createTextNode(key);
-        td1.appendChild(text1);
-        
-        let td2 = tr.insertCell();
-        let text2 = document.createTextNode(value);
-        td2.appendChild(text2);
+        else {
+            let p = document.createElement("p");        
+            p.innerHTML = value;
+            card.appendChild(p); 
+        }
     }
-    card.appendChild(table);
     cardsContainer.appendChild(card);
 });
+
+
