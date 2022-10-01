@@ -1,14 +1,16 @@
 
 :root {
-    --bright-white: white;
+    --bright-white: #FDFDFF;
     --bright-blue: #51e2f5;
     --blue-green: #9df9ef;
     --dusty-white: #edf7f6;
     --pink-sand: #ffa8B6;
     --dark-sand: #a28089;
+    --grey: #62929E;
 
     --card-shadow: rgba(0, 0, 0, 0.20) 0px 2px 5px;
-    --radius: 10px;
+    --radius-l: 10px;
+    --radius-s: 5px;
 
     --ff: 'Reem Kufi Ink', sans-serif;
     
@@ -30,11 +32,24 @@
 
 
 body {
+    margin: 0;
     background-color: var(--dusty-white);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: var(--ff);
+    gap: var(--spacing-l);
 }
+
+/** Header **/
+
+header {
+    height: 100px;
+    width: 100%;
+    background-color: #393D3F;
+}
+
+/** Cards **/
 
 p {
     margin: 0;
@@ -53,17 +68,13 @@ p {
 .card {
     background-color: var(--bright-white);
     box-shadow: var(--card-shadow);
-    border-radius: var(--radius);
+    border-radius: var(--radius-l);
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 300px;
     padding: var(--spacing-m);
     gap: var(--spacing-m);
-}
-
-#add-button {
-    display: none;
 }
 
 #add-form {
@@ -74,4 +85,23 @@ p {
 
 #add-form div {
     margin: var(--spacing-m);
+}
+
+/** Buttons **/
+
+button {
+    /*Button reset*/
+    border: medium none;
+    list-style: none outside none;
+    margin: 0;
+    border-spacing: 0;
+    text-indent: 0;
+    text-align: left;
+    text-decoration: none;
+
+    /*Button styling*/
+    border-radius: var(--radius-s);
+    background-color: #ffa8B6;
+    font: inherit;
+    padding: 10px;
 }
