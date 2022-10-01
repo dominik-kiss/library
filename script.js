@@ -22,6 +22,11 @@ addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 250, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 275, true);
 addBookToLibrary("Beloved", "Toni Morrison", 150, false);
+addBookToLibrary("Beloved", "Toni Morrison", 150, false);
+addBookToLibrary("Beloved", "Toni Morrison", 150, false);
+addBookToLibrary("Beloved", "Toni Morrison", 150, false);
+addBookToLibrary("Beloved", "Toni Morrison", 150, false);
+addBookToLibrary("Beloved", "Toni Morrison", 150, false);
 
 
 myLibrary.forEach((book, index) => {
@@ -38,12 +43,21 @@ myLibrary.forEach((book, index) => {
             break;
         }
         else {
-            let p = document.createElement("p");        
-            p.innerHTML = value;
+            let p = document.createElement("p");
+            switch (key) {
+                case "author":
+                    p.innerHTML = "by " + value;
+                    break;
+                case "pages":
+                    p.innerHTML = value + " pages";
+                    break;
+                default:
+                    p.innerHTML = value;
+                    break;
+            }
+            p.classList += key;
             card.appendChild(p); 
         }
     }
     cardsContainer.appendChild(card);
 });
-
-
