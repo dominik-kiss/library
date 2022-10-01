@@ -30,7 +30,7 @@ addBookToLibrary("Beloved", "Toni Morrison", 150, false);
 
 
 myLibrary.forEach((book, index) => {
-    const cardsContainer = document.getElementById("cards");
+    const cardsContainer = document.getElementById("cards-container");
     let card = document.createElement("div");
     card.className = "card";
     card.id = `card${index+1}`;
