@@ -22,11 +22,11 @@ addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 250, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 275, true);
 addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-addBookToLibrary("Beloved", "Toni Morrison", 150, false);
+addBookToLibrary("Example1", "Toni Morrison", 150, false);
+addBookToLibrary("Example12", "Toni Morrison", 150, false);
+addBookToLibrary("Example13", "Toni Morrison", 150, false);
+addBookToLibrary("Example132", "Toni Morrison", 150, false);
+addBookToLibrary("Example15", "Toni Morrison", 150, false);
 
 const cardsContainer = document.getElementById("cards-container");
 
@@ -44,6 +44,7 @@ myLibrary.forEach((book, index) => {
         if (key == "read") {
             let readButton = document.createElement("button");
             readButton.innerHTML = value ? "Read" : "Not read";
+            readButton.className = value ? "read" : "not-read";
             card.appendChild(readButton);
             break;
         }
@@ -65,12 +66,35 @@ myLibrary.forEach((book, index) => {
         }
     }
     cardsContainer.appendChild(card);
+    updateLog();
 });
 
-let cancelButtons = document.querySelectorAll(".close-button");
-cancelButtons.forEach(button => button.addEventListener("click", removeBook));
+// Remove book object from array, and card element from display
+
+let cancelButtons = document.querySelectorAll(".close-button").forEach(button => button.addEventListener("click", removeBook));
 
 function removeBook() {
-    let cardToBeRemoved = document.getElementById(this.parentNode.id);
-    cardsContainer.removeChild(cardToBeRemoved);
+    myLibrary = myLibrary.filter((el) => el.title != this.nextElementSibling.innerHTML);
+    cardsContainer.removeChild(document.getElementById(this.parentNode.id));
+    updateLog();
+}
+
+document.querySelectorAll(".read, .not-read").forEach(button => button.addEventListener("click", switchRead));
+
+
+// Switch the class and text content of the 'Read/Not read' button after clicking on it
+
+function switchRead() {
+    this.className = this.className == "read" ? "not-read" : "read";
+    this.innerHTML = this.innerHTML == "Read" ? "Not read" : "Read";
+    updateLog();
+}
+
+
+// Update the statistics in the top right
+
+function updateLog() {
+    document.getElementById("total-num").innerHTML = `Your books: ${myLibrary.length}`;
+    document.getElementById("read-num").innerHTML = `Read: ${document.querySelectorAll(".read").length}`;
+    document.getElementById("not-read-num").innerHTML = `Not yet read: ${document.querySelectorAll(".not-read").length}`;
 }
