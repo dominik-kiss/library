@@ -28,12 +28,17 @@ addBookToLibrary("Beloved", "Toni Morrison", 150, false);
 addBookToLibrary("Beloved", "Toni Morrison", 150, false);
 addBookToLibrary("Beloved", "Toni Morrison", 150, false);
 
+const cardsContainer = document.getElementById("cards-container");
 
 myLibrary.forEach((book, index) => {
-    const cardsContainer = document.getElementById("cards-container");
     let card = document.createElement("div");
     card.className = "card";
     card.id = `card${index+1}`;
+
+    let cancel = document.createElement("i");
+    cancel.innerHTML = "close";
+    cancel.className = "material-icons close-button";
+    card.appendChild(cancel);
 
     for (const [key, value] of Object.entries(book)) {
         if (key == "read") {
@@ -61,3 +66,11 @@ myLibrary.forEach((book, index) => {
     }
     cardsContainer.appendChild(card);
 });
+
+let cancelButtons = document.querySelectorAll(".close-button");
+cancelButtons.forEach(button => button.addEventListener("click", removeBook));
+
+function removeBook() {
+    let cardToBeRemoved = document.getElementById(this.parentNode.id);
+    cardsContainer.removeChild(cardToBeRemoved);
+}

@@ -25,9 +25,9 @@
     --site-width: 1500px;
 
     --spacing-l: 40px;
-    --spacing-m: calc(var(--spacing-l) * 0.5);
-    --spacing-s: calc(var(--spacing-m) * 0.5);
-    --spacing-xs: calc(var(--spacing-s) * 0.5);
+    --spacing-m: calc(var(--spacing-l) * 0.5); /*20px*/
+    --spacing-s: calc(var(--spacing-m) * 0.5); /*10px*/
+    --spacing-xs: calc(var(--spacing-s) * 0.5); /*5px*/
 }
 
 
@@ -61,7 +61,7 @@ p {
     width: var(--site-width);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
     gap: var(--spacing-l);
 }
 
@@ -75,6 +75,7 @@ p {
     width: 300px;
     padding: var(--spacing-m);
     gap: var(--spacing-m);
+    position: relative;
 }
 
 #add-form {
@@ -99,9 +100,28 @@ button {
     text-align: left;
     text-decoration: none;
 
-    /*Button styling*/
+    /*General button styling*/
     border-radius: var(--radius-s);
     background-color: #ffa8B6;
     font: inherit;
     padding: 10px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.close-button {
+    position: absolute;
+    right: var(--spacing-s);
+    top: var(--spacing-s);
+    cursor: pointer;
+}
+
+.close-button:hover {
+    transform: scale(1.5);
+    transition-duration: 0.5s;
+}
+
+#add-button {
+    width: 150px;
 }
