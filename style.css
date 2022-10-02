@@ -7,6 +7,7 @@
     --pink-sand: #ffa8B6;
     --dark-sand: #a28089;
     --grey: #62929E;
+    --header: #393D3F;
 
     --card-shadow: rgba(0, 0, 0, 0.20) 0px 2px 5px;
     --radius-l: 10px;
@@ -14,7 +15,7 @@
 
     --ff: 'Reem Kufi Ink', sans-serif;
     
-    --flarge: 24px;
+    --flarge: 34px;
     --fnormal: 20px;
     --fsmall: 16px;
 
@@ -44,10 +45,33 @@ body {
 /** Header **/
 
 header {
+    background-color: var(--header);
+    font-size: var(--fnormal);
+    color: var(--dusty-white);
     height: 100px;
     width: 100%;
-    background-color: #393D3F;
+    display: flex;
+    justify-content: center;
 }
+
+#logo {
+    font-weight: var(--bold);
+    font-size: var(--flarge);
+}
+
+#header-container {
+    width: var(--site-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#summary {
+    font-size: var(--fnormal);
+    margin-right: 100px;
+}
+
+
 
 /** Cards **/
 
@@ -78,6 +102,12 @@ p {
     position: relative;
 }
 
+.title {
+    font-weight: var(--medium);
+}
+
+/** Form **/
+
 #add-form {
     display: none;
     padding: 50px;
@@ -102,7 +132,6 @@ button {
 
     /*General button styling*/
     border-radius: var(--radius-s);
-    background-color: #ffa8B6;
     font: inherit;
     padding: 10px;
     width: 100px;
@@ -124,4 +153,12 @@ button {
 
 #add-button {
     width: 150px;
+}
+
+.read {
+    background-color: var(--bright-blue);
+}
+
+.not-read {
+    background-color: var(--pink-sand);
 }
