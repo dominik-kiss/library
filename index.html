@@ -13,9 +13,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header></header>
+    <header>
+        <div id="header-container">
+            <div id="logo">My library</div>
+            <div id="summary">
+                <div id="total-num">Your books:</div>
+                <div id="read-num">Read:</div>
+                <div id="not-read-num">Not read:</div>
+            </div>    
+        </div>
+    </header>
     <button id="add-button">NEW BOOK</button>
-    <form action="#" id="add-form">
+    <form action="#" id="add-form" class="form hidden">
+        <i class="material-icons" id="form-close">close</i>
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title">

@@ -28,6 +28,18 @@ addBookToLibrary("Example13", "Toni Morrison", 150, false);
 addBookToLibrary("Example132", "Toni Morrison", 150, false);
 addBookToLibrary("Example15", "Toni Morrison", 150, false);
 
+
+// Form
+
+document.getElementById("add-button").addEventListener("click", toggleForm);
+document.getElementById("form-close").addEventListener("click", toggleForm);
+
+function toggleForm() {
+    document.getElementById("add-form").classList.toggle("hidden");
+}
+
+// Create a card for each 'Book' object in the array
+
 const cardsContainer = document.getElementById("cards-container");
 
 myLibrary.forEach((book, index) => {

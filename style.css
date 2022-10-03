@@ -108,14 +108,35 @@ p {
 
 /** Form **/
 
-#add-form {
-    display: none;
+.form {
+    background-color: var(--dark-sand);
+    margin: var(--spacing-m);
+    border-radius: var(--radius-l);
+    gap: var(--spacing-m);
+    position: absolute;
+    z-index: 1000;
+    margin: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 50px;
     text-align: center;
 }
 
-#add-form div {
-    margin: var(--spacing-m);
+.hidden {
+    display: none;
+}
+
+#form-close {
+    position: absolute;
+    right: var(--spacing-s);
+    top: var(--spacing-s);
+    cursor: pointer;
+}
+
+.form-close:hover {
+    transform: scale(1.5);
+    transition-duration: 0.5s;
 }
 
 /** Buttons **/
