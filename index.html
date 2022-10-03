@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <script src="script.js" defer></script>
+    <script type="text/javascript" src = "node_modules/mustache/mustache.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +45,19 @@
         </div>
         <button type="submit" id="submit-button">Add to library</button>
     </form>
-    <div id="cards-container"></div>
+    <div id="cards-container">
+        <script id="card-template" type="text/template">
+            {{#books}}
+                <div class="card">
+                    <i class="material-icons close-button">close</i>
+                    <p class="title">{{title}}</p>
+                    <p class="author">{{author}}</p>
+                    <p class="pages">{{pages}}</p>
+                    <button class="read">{{read}}</button>
+                </div>
+            {{/books}}
+        </script>
+        
+    </div>
 </body>
 </html>
