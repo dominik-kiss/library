@@ -1,7 +1,6 @@
 
 let myLibrary = [];
 
-
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -28,6 +27,8 @@ addBookToLibrary("Example13", "Toni Morrison", 150, false);
 addBookToLibrary("Example132", "Toni Morrison", 150, false);
 addBookToLibrary("Example15", "Toni Morrison", 150, false);
 
+let cancelButtons = document.querySelectorAll(".close-button").forEach(button => button.addEventListener("click", removeBook));
+document.querySelectorAll(".read, .not-read").forEach(button => button.addEventListener("click", switchRead));
 
 // Form
 
@@ -42,63 +43,66 @@ function toggleForm() {
 
 const cardsContainer = document.getElementById("cards-container");
 
-myLibrary.forEach((book, index) => {
-    let card = document.createElement("div");
-    card.className = "card";
-    card.id = `card${index+1}`;
-
-    let cancel = document.createElement("i");
-    cancel.innerHTML = "close";
-    cancel.className = "material-icons close-button";
-    card.appendChild(cancel);
-
-    for (const [key, value] of Object.entries(book)) {
-        if (key == "read") {
-            let readButton = document.createElement("button");
-            readButton.innerHTML = value ? "Read" : "Not read";
-            readButton.className = value ? "read" : "not-read";
-            card.appendChild(readButton);
-            break;
-        }
-        else {
-            let p = document.createElement("p");
-            switch (key) {
-                case "author":
-                    p.innerHTML = "by " + value;
-                    break;
-                case "pages":
-                    p.innerHTML = value + " pages";
-                    break;
-                default:
-                    p.innerHTML = value;
-                    break;
+function updateDisplay() {
+    cardsContainer.replaceChildren();
+    myLibrary.forEach((book, index) => {
+        let card = document.createElement("div");
+        card.className = "card";
+        card.id = index;
+    
+        let cancel = document.createElement("i");
+        cancel.innerHTML = "close";
+        cancel.className = "material-icons close-button";
+        card.appendChild(cancel);
+    
+        for (const [key, value] of Object.entries(book)) {
+            if (key == "read") {
+                let readButton = document.createElement("button");
+                readButton.innerHTML = value ? "Read" : "Not read";
+                readButton.className = value ? "read" : "not-read";
+                card.appendChild(readButton);
+                break;
             }
-            p.classList += key;
-            card.appendChild(p); 
+            else {
+                let p = document.createElement("p");
+                switch (key) {
+                    case "author":
+                        p.innerHTML = "by " + value;
+                        break;
+                    case "pages":
+                        p.innerHTML = value + " pages";
+                        break;
+                    default:
+                        p.innerHTML = value;
+                        break;
+                }
+                p.classList += key;
+                card.appendChild(p); 
+            }
         }
-    }
-    cardsContainer.appendChild(card);
+        cardsContainer.appendChild(card);
+    });
     updateLog();
-});
+    cancelButtons = document.querySelectorAll(".close-button").forEach(button => button.addEventListener("click", removeBook));
+    document.querySelectorAll(".read, .not-read").forEach(button => button.addEventListener("click", switchRead));
+}
+
+updateDisplay();
+
 
 // Remove book object from array, and card element from display
 
-let cancelButtons = document.querySelectorAll(".close-button").forEach(button => button.addEventListener("click", removeBook));
-
 function removeBook() {
-    myLibrary = myLibrary.filter((el) => el.title != this.nextElementSibling.innerHTML);
-    cardsContainer.removeChild(document.getElementById(this.parentNode.id));
-    updateLog();
+    myLibrary.splice(this.parentElement.id, 1);
+    updateDisplay();
 }
-
-document.querySelectorAll(".read, .not-read").forEach(button => button.addEventListener("click", switchRead));
-
 
 // Switch the class and text content of the 'Read/Not read' button after clicking on it
 
 function switchRead() {
     this.className = this.className == "read" ? "not-read" : "read";
     this.innerHTML = this.innerHTML == "Read" ? "Not read" : "Read";
+    myLibrary[this.parentElement.id].read = !myLibrary[this.parentElement.id].read;
     updateLog();
 }
 
