@@ -15,11 +15,6 @@ let myLibrary = (function() {
         myLibrary.push(new Book(title, author, pages, read));
     }
 
-    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-    addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 250, true);
-    addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 275, true);
-    addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-
     // Cache DOM
     let cardsContainer = document.querySelector("#cards-container");
     let newBookButton = document.getElementById("add-button");
@@ -37,13 +32,16 @@ let myLibrary = (function() {
     let pages;
     let readButtons;
 
-    render();
-
     // Bind listeners that will not change
 
     newBookButton.addEventListener("click", toggleForm);
     formClose.addEventListener("click", toggleForm);
     submitButton.addEventListener("click", toggleForm);
+ 
+    // Add example book and render the DOM with the newly created elements
+
+    addBook("The Hobbit", "J.R.R. Tolkien", 295, false);
+    render();
 
     function render() {
         cardsContainer.innerHTML = Mustache.render('\
