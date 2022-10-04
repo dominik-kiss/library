@@ -1,5 +1,3 @@
-
-
 let myLibrary = (function() {
 
     let myLibrary = [];
@@ -17,12 +15,10 @@ let myLibrary = (function() {
         myLibrary.push(new Book(title, author, pages, read));
     }
 
-
     addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
     addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 250, true);
     addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 275, true);
     addBookToLibrary("Beloved", "Toni Morrison", 150, false);
-    
 
     // Cache DOM
     let cardsContainer = document.querySelector("#cards-container");
@@ -35,7 +31,6 @@ let myLibrary = (function() {
     let pages;
     let reads;
 
-    
     render();
 
     // Bind listeners that will not change
@@ -43,8 +38,6 @@ let myLibrary = (function() {
     newBookButton.addEventListener("click", toggleForm);
     formClose.addEventListener("click", toggleForm);
     submitButton.addEventListener("click", addCard);
-
-
 
     function render() {
 
