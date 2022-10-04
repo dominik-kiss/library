@@ -25,6 +25,12 @@ let myLibrary = (function() {
     let newBookButton = document.getElementById("add-button");
     let form = document.getElementById("add-form");
     let submitButton = form.querySelector("#submit-button");
+
+    let headerContainer = document.getElementById("header-container");
+    let totalNum = headerContainer.querySelector("#total-num");
+    let readNum = headerContainer.querySelector("#read-num");
+    let notReadNum = headerContainer.querySelector("#not-read-num");
+
     let cancelButtons;
     let titles;
     let authors;
@@ -52,6 +58,7 @@ let myLibrary = (function() {
         {{/myLibrary}}\
         ', { myLibrary: myLibrary });
         bindListeners();
+        updateSummary();
     }
 
     function bindListeners() {
@@ -65,6 +72,15 @@ let myLibrary = (function() {
         
         cancelButtons.forEach(button => button.addEventListener("click", removeCard));
         readButtons.forEach(button => button.addEventListener("click", switchRead));
+    }
+
+    function updateSummary() {
+        let total = myLibrary.length;
+        let read = myLibrary.filter(book => book.read == true).length;
+        let notRead = total - read;
+        totalNum.innerHTML = `Your books: ${total}`;
+        readNum.innerHTML = `Read: ${read}`;
+        notReadNum.innerHTML = `Not read: ${notRead}`;
     }
 
     function toggleForm() {
