@@ -29,7 +29,7 @@ let myLibrary = (function() {
     let titles;
     let authors;
     let pages;
-    let reads;
+    let readButtons;
 
     render();
 
@@ -40,7 +40,6 @@ let myLibrary = (function() {
     submitButton.addEventListener("click", addCard);
 
     function render() {
-
         cardsContainer.innerHTML = Mustache.render('\
         {{#myLibrary}}\
         <div class="card">\
@@ -62,9 +61,10 @@ let myLibrary = (function() {
         titles = cardsContainer.querySelectorAll(".title");
         authors = cardsContainer.querySelectorAll(".author");
         pages = cardsContainer.querySelectorAll(".pages");
-        reads = cardsContainer.querySelectorAll(".read, .not-read");
+        readButtons = cardsContainer.querySelectorAll(".read, .not-read");
         
-        cancelButtons.forEach(button => button.addEventListener("click", removeCard));    
+        cancelButtons.forEach(button => button.addEventListener("click", removeCard));
+        readButtons.forEach(button => button.addEventListener("click", switchRead));
     }
 
     function toggleForm() {
@@ -89,6 +89,15 @@ let myLibrary = (function() {
         authorInput.value = "";
         pagesInput.value = "";
         readInput.checked = false;
+    }
+
+    function switchRead() {
+        let index = [...cardsContainer.children].indexOf(this.parentElement);
+        let thisObject = myLibrary[index];
+        thisObject.read = !thisObject.read;
+        thisObject.readText = thisObject.read ? "Read":"Not read";
+        thisObject.readStyle = thisObject.read ? "read":"not-read";
+        render();
     }
 
 })();
