@@ -43,7 +43,7 @@ let myLibrary = (function() {
 
     newBookButton.addEventListener("click", toggleForm);
     formClose.addEventListener("click", toggleForm);
-    submitButton.addEventListener("click", addCard);
+    submitButton.addEventListener("click", toggleForm);
 
     function render() {
         cardsContainer.innerHTML = Mustache.render('\
@@ -70,7 +70,7 @@ let myLibrary = (function() {
         pages = cardsContainer.querySelectorAll(".pages");
         readButtons = cardsContainer.querySelectorAll(".read, .not-read");
         
-        cancelButtons.forEach(button => button.addEventListener("click", removeCard));
+        cancelButtons.forEach(button => button.addEventListener("click", removeBook));
         readButtons.forEach(button => button.addEventListener("click", switchRead));
     }
 
@@ -84,18 +84,26 @@ let myLibrary = (function() {
     }
 
     function toggleForm() {
+        if (this == submitButton) {
+            addBook();
+        }
         clearForm()
         form.classList.toggle("hidden");
     }
 
-    function addCard() {
-        addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
-        toggleForm();
+    function addBook(title, author, pages, read) {
+
+        let titleProp = (typeof title === "string") ? title:titleInput.value;
+        let authorProp = (typeof author === "string") ? author:authorInput.value;
+        let pagesProp = (typeof pages === "string" || typeof parseInt(pages) === "number") ? pages:pagesInput.value;
+        let readProp = (typeof read === "boolean") ? read:readInput.checked;
+
+        myLibrary.push(new Book(titleProp, authorProp, pagesProp, readProp));
         render();
     }
 
-    function removeCard() {
-        let index = [...cardsContainer.children].indexOf(this.parentElement);
+    function removeBook(i) {
+        let index = (typeof i === "number") ? i:[...cardsContainer.children].indexOf(this.parentElement);
         myLibrary.splice(index, 1);
         render();
     }
@@ -114,6 +122,11 @@ let myLibrary = (function() {
         thisObject.readText = thisObject.read ? "Read":"Not read";
         thisObject.readStyle = thisObject.read ? "read":"not-read";
         render();
+    }
+
+    return {
+        addBook: addBook,
+        removeBook: removeBook
     }
 
 })();
