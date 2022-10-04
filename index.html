@@ -21,43 +21,30 @@
                 <div id="total-num">Your books:</div>
                 <div id="read-num">Read:</div>
                 <div id="not-read-num">Not read:</div>
-            </div>    
+            </div>
         </div>
     </header>
     <button id="add-button">NEW BOOK</button>
     <form id="add-form" class="form hidden">
-        <i class="material-icons" id="form-close">close</i>
+        <i class="material-icons close-button" id="formClose">close</i>
         <div>
             <label for="title">Title</label>
-            <input type="text" name="title" id="title">
+            <input type="text" name="titleInput" id="titleInput">
         </div>
         <div>
             <label for="author">Author:</label>
-            <input type="text" name="author" id="author">
+            <input type="text" name="authorInput" id="authorInput">
         </div>
         <div>
             <label for="pages">Pages:</label>
-            <input type="number" name="pages" id="pages">
+            <input type="number" name="pagesInput" id="pagesInput">
         </div>
         <div>
             <label for="read">Have you read this book?</label>
-            <input type="checkbox" name="read" id="read">
+            <input type="checkbox" name="readInput" id="readInput">
         </div>
-        <button type="submit" id="submit-button">Add to library</button>
+        <button type="button" id="submit-button">Add to library</button>
     </form>
-    <div id="cards-container">
-        <script id="card-template" type="text/template">
-            {{#books}}
-                <div class="card">
-                    <i class="material-icons close-button">close</i>
-                    <p class="title">{{title}}</p>
-                    <p class="author">{{author}}</p>
-                    <p class="pages">{{pages}}</p>
-                    <button class="read">{{read}}</button>
-                </div>
-            {{/books}}
-        </script>
-        
-    </div>
+    <div id="cards-container"></div>
 </body>
 </html>
